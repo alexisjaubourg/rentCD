@@ -15,7 +15,7 @@ Open the H2 web console: http://localhost:8080/h2-console
 
 In the login page make sure that you use jdbc:h2:mem:testdb as JDBC URL, with username "sa"
 
-Web Service: http://localhost:8080/cd and http://localhost:8080/artist
+Web Service: http://localhost:8080/cd , http://localhost:8080/artist and http://localhost:8080/track
 
 Use a plugin like Postman to test the application
 
