@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>rentCD</title>
+	</head>
+	
+	<body>
+		<h1>Collection de CD</h1>
+		
+		<div id="listOfCDS">
+
+		<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			getCds();
+		}, false);
+		function getCds(){
+			var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				  document.getElementById("listOfCDS").innerHTML =
+				  this.responseText;
+				}
+			  };
+			  xhttp.open("GET", "http://localhost:8080/cd", true);
+			  xhttp.send();
+}
+		</script>
+	</body>
+</html>

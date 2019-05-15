@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cd {
 	
 	private List<Artist> artists = new ArrayList<Artist>();
+	private List<Track> tracks = new ArrayList<Track>();
 	
 	private long id;
 	private String name;
@@ -54,10 +55,20 @@ public class Cd {
 	public void setArtists(List<Artist> artists) {
 		this.artists = artists;
 	}
+	
+	@OneToMany(mappedBy="cd", cascade=CascadeType.ALL)
+	@JsonIgnore
+	public List<Track> getTracks() {
+		return tracks;
+	}
+
+	public void setTracks(List<Track> tracks) {
+		this.tracks = tracks;
+	}
 
 	@Override
 	public String toString() {
-		return "Cd [artists=" + artists + ", id=" + id + ", name=" + name + "]";
+		return "Cd [artists=" + artists + ", id=" + id + ", name=" + name + ", tracks=" + tracks + "]";
 	}
 	
 }

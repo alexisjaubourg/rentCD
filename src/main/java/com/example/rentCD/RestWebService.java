@@ -17,14 +17,17 @@ public class RestWebService {
 
 	CdRepository cdRepository;
 	ArtistRepository artistRepository;
+	TrackRepository trackRepository;
 	
 	@Autowired
-	public RestWebService(CdRepository cdRepository, ArtistRepository artistRepository) {
+	public RestWebService(CdRepository cdRepository, ArtistRepository artistRepository, TrackRepository trackRepository) {
 		super();
 		this.cdRepository = cdRepository;
 		this.artistRepository = artistRepository;
+		this.trackRepository = trackRepository;
 	}
 	
+	// CD functions
 	@RequestMapping(value="/cd", method=RequestMethod.GET) 
 	@ResponseStatus(HttpStatus.OK) 
 	public Iterable<Cd> getCd(){
@@ -37,12 +40,6 @@ public class RestWebService {
 	public Optional<Cd> aCd(@PathVariable("id") long id) throws Exception{
 		return cdRepository.findById(id);
 	} 
-	
-	@RequestMapping(value="/artist", method=RequestMethod.GET) 
-	@ResponseStatus(HttpStatus.OK) 
-	public Iterable<Artist> getArtist(){
-		return artistRepository.findAll();
-	}
 	
 	@RequestMapping(value = "/cd", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
@@ -57,4 +54,45 @@ public class RestWebService {
 		cdRepository.deleteById(id);
 	} 
 	
+	// Artist functions
+	@RequestMapping(value="/artist", method=RequestMethod.GET) 
+	@ResponseStatus(HttpStatus.OK) 
+	public Iterable<Artist> getArtist(){
+		return artistRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/artist/{id}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Optional<Artist> aArtist(@PathVariable("id") long id) throws Exception{
+		return artistRepository.findById(id);
+	} 
+	
+	@RequestMapping(value = "/artist", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public void addArtist(@RequestBody Artist artist) throws Exception{
+		System.out.println(artist);
+		artistRepository.save(artist);
+	}
+	
+	// Track functions
+	@RequestMapping(value="/track", method=RequestMethod.GET) 
+	@ResponseStatus(HttpStatus.OK) 
+	public Iterable<Track> getTrack(){
+		return trackRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/track/{id}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Optional<Track> aTrack(@PathVariable("id") long id) throws Exception{
+		return trackRepository.findById(id);
+	} 
+	
+	@RequestMapping(value = "/track", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public void addTrack(@RequestBody Track track) throws Exception{
+		System.out.println(track);
+		trackRepository.save(track);
+	}
 }

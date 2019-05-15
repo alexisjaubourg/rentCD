@@ -1,10 +1,5 @@
 package com.example.rentCD;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,8 +7,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class RentCdApplication {
-	
-	private static final Logger log = LoggerFactory.getLogger(RentCdApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(RentCdApplication.class, args);
@@ -22,21 +15,22 @@ public class RentCdApplication {
 	@Bean
 	public CommandLineRunner demo(CdRepository repository) {
 		return (args) -> {
+
+			Cd dsm = new Cd(0, "The Dark Side Of The Moon");
+			Artist pf = new Artist(0, "Pink Floyd");
+			Artist dg = new Artist(1, "David Gilmour");
+			Track ggs = new Track (0, "The Great Gig In The Sky");
 			
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = dateFormat.parse("2018-10-09");
-			log.info(date.toString());
+			dsm.getArtists().add(pf);
+			pf.setCd(dsm);
 			
-			Cd sftd = new Cd(0, "SongForTheDead");
-			Artist qotsa = new Artist(0, "QueensOfTheStoneAge");
-			sftd.getArtists().add(qotsa);
-			qotsa.setCd(sftd);
+			dsm.getArtists().add(dg);
+			dg.setCd(dsm);
 			
-			Artist dg = new Artist(1, "DaveGrohl");
-			sftd.getArtists().add(dg);
-			dg.setCd(sftd);
+			dsm.getTracks().add(ggs);
+			ggs.setCd(dsm);
 			
-			repository.save(sftd);	
+			repository.save(dsm);	
 		};
 	}
 

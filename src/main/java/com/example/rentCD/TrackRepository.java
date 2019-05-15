@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ArtistRepository extends CrudRepository<Artist, Long> {
+public interface TrackRepository extends CrudRepository<Track, Long> {
 	
-	List<Artist> findByArtistName(String name);
+	List<Track> findByTrackName(String name);
 	
 }

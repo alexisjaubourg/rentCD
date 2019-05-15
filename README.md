@@ -19,3 +19,5 @@ Web Service: http://localhost:8080/cd , http://localhost:8080/artist and http://
 
 Use a plugin like Postman to test the application
 
+HTML index page: http://localhost:8080/static/index.html
+

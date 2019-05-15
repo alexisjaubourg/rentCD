@@ -7,18 +7,18 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Artist {
 	
-	private long id;
-	private String name;
+	private long artistId;
+	private String artistName;
 	private Cd cd;
 	
 	public Artist() {
 		super();
 	}
 
-	public Artist(long id, String name) {
+	public Artist(long artistId, String artistName) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.artistId = artistId;
+		this.artistName = artistName;
 	}
 	
 	@ManyToOne
@@ -29,24 +29,24 @@ public class Artist {
 	public void setCd(Cd cd) {
 		this.cd = cd;
 	}
-
+	
 	@Id
-	public long getId() {
-		return id;
+	public long getArtistId() {
+		return artistId;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setArtistId(long artistId) {
+		this.artistId = artistId;
 	}
-	public String getName() {
-		return name;
+	public String getArtistName() {
+		return artistName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return artistName;
 	}
 	
 	
